@@ -1,6 +1,7 @@
 import Joi from 'joi';
 
 export const addJobSeekerValidationSchema = Joi.object({
+  Password:Joi.string().required(),
     FullName: Joi.string().required(),
     EmailId: Joi.string().email().required(),
     MobileNo: Joi.string().required(),

@@ -4,7 +4,16 @@ import jwt, { decode } from "jsonwebtoken"
 import { crudOps } from "../../utils/crud_ops.js";
 import { Employer } from "../../database/models/employer.js";
 
-export const addEmployer = crudOps.addModel(Employer)
+export const addEmployer = asyncHandler(
+    async(req,res,nxt)=>{
+        const {Password,EmailId}=req.body
+        delete req.body["Password"]
+        const doc = await Employer.create(req.body)
+        if(doc) User.create({Password,EmailId,UserRole:'Employer',EmployerId:doc._id})
+        
+        return res.json({Result:true,doc})
+    }
+)
 
 export const updateEmployer = asyncHandler(
     async (req, res, nxt) => {

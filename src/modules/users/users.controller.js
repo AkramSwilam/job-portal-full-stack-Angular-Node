@@ -17,14 +17,14 @@ export const signup = asyncHandler(
 
 export const signin = asyncHandler(
     async (req, res, nxt) => {
-        const { userName, Password } = req.body
-        const userExisit = await User.findOne({ userName,Password })
+        const { EmailId, Password } = req.body
+        const userExisit = await User.findOne({ EmailId,Password })
         console.log(userExisit);
         if (!userExisit) return res.status(402).json({ message: "wrong name or password" })
 
         const token = jwt.sign({
             id: userExisit._id,
-            userName: userExisit.userName
+            EmailId: userExisit.EmailId
         }, process.env.SECRET_KEY)
 
         return res.status(200).json({Result:true, doc: userExisit, token })
