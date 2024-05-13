@@ -22,7 +22,12 @@ export const addJob = asyncHandler(
 
 export const getJobs = crudOps.getAll(Job)
 
-export const getJob = crudOps.getOne(Job)
+export const getJob = asyncHandler(
+    async(req,res,nxt)=>{
+        const docs = await Job.findById(req.params.id).populate('EmployerId')
+        return res.json({ Result: true, docs })
+    }
+)
 
 export const updateJob = asyncHandler(
     async (req, res, nxt) => {
