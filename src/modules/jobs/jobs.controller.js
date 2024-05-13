@@ -20,10 +20,31 @@ export const addJob = asyncHandler(
     }
 )
 
-export const getJobs = crudOps.getAll(Job)
+export const getJobs = asyncHandler(
+    async (req, res, nxt) => {
+        const { keyword, location, experience } = req.query;
+
+        const filter = {};
+        if (keyword) {
+            filter.$or = [
+                { JobName: { $regex: keyword, $options: 'i' } },
+                { JobDescription: { $regex: keyword, $options: 'i' } }
+            ];
+        }
+        if (location) {
+            filter.Location = location;
+        }
+        if (experience) {
+            filter.Experience = experience;
+        }
+        const docs = await Job.find(filter);
+
+        res.status(200).json({docs});
+    }
+)
 
 export const getJob = asyncHandler(
-    async(req,res,nxt)=>{
+    async (req, res, nxt) => {
         const docs = await Job.findById(req.params.id).populate('EmployerId')
         return res.json({ Result: true, docs })
     }
