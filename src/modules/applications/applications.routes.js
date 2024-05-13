@@ -17,4 +17,6 @@ applicationsRouter.get("/jobSeeker/:jobSeekerId",appsController.getApplicationsB
 
 applicationsRouter.get("/job/:jobId",appsController.getApplicationsByJobId)
 
+applicationsRouter.delete("/:id",appsController.deleteApp)
+
 

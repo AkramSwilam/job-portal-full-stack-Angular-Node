@@ -44,4 +44,6 @@ export const getApplicationsByJobId = asyncHandler(
     }
 )
 
+export const deleteApp=crudOps.deleteModel(Application)
+
 
