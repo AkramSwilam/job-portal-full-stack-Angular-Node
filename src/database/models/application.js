@@ -1,9 +1,10 @@
-import mongoose from "mongoose";
+import mongoose, { Types } from "mongoose";
 
 
 const ApplicationSchema = new mongoose.Schema({
   JobId: {
-    type: String,
+    type: Types.ObjectId,
+    ref:'Job',
     required: true
   },
   JobSeekerId: {

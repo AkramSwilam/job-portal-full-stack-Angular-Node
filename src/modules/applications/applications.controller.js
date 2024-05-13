@@ -31,7 +31,7 @@ export const getApplication = crudOps.getOne(Application)
 export const getApplicationsBySeekerId = asyncHandler(
     async (req, res, nxt) => {
         const { jobSeekerId } = req.params
-        const docs = await Application.find({ JobSeekerId: jobSeekerId })
+        const docs = await Application.find({ JobSeekerId: jobSeekerId }).populate('JobId')
         return res.json({ Result: true, docs })
     }
 )
