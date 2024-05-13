@@ -50,7 +50,7 @@ export const deleteJob = crudOps.deleteModel(Job)
 
 export const getActiveJobs = asyncHandler(
     async (req, res, nxt) => {
-        const docs = await Job.find({ IsActive: true })
+        const docs = await Job.find({ IsActive: true }).populate('EmployerId')
         return res.json({ Result: true, docs })
     }
 )

@@ -1,4 +1,4 @@
-import mongoose from "mongoose";
+import mongoose, { Types } from "mongoose";
 
 const JobSchema = new mongoose.Schema({
     JobName: {
@@ -10,8 +10,9 @@ const JobSchema = new mongoose.Schema({
       required: true
     },
     EmployerId: {
-      type: String,
-      required: true
+      type: Types.ObjectId,
+      required: true,
+      ref:"Employer"
     },
     CategoryId: {
       type: String,
