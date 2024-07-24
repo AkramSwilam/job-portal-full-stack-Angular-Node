@@ -13,7 +13,7 @@ jobSeekerRouter.get("/:id", jobSeekerController.getJobSeeker)
 jobSeekerRouter.post("/", appValidator(jobSeekerValidation.addJobSeekerValidationSchema),
     jobSeekerController.addJobSeeker)
 
-// jobSeekerRouter.put("/", appValidator(jobSeekerValidation.updateJobSeekerValidationSchema),
-//     jobSeekerController.updateJobSeeker)
+jobSeekerRouter.put("/:id",
+    jobSeekerController.updateJobSeeker)
 
 jobSeekerRouter.delete("/:id", jobSeekerController.deleteJobSeeker)

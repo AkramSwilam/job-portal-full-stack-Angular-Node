@@ -22,3 +22,5 @@ export const deleteJobSeeker = crudOps.deleteModel(JobSeeker)
 export const getJobSeekers = crudOps.getAll(JobSeeker)
 
 export const getJobSeeker = crudOps.getOne(JobSeeker)
+
+export const updateJobSeeker=crudOps.updateModel(JobSeeker)
